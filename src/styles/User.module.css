@@ -1,0 +1,42 @@
+.container {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+}
+
+/* .container  main {
+  padding: 1em;
+} */
+
+.header {
+  display: flex;
+  padding: 2em;
+  background: rgb(28,28,29);
+  background: linear-gradient(0deg, rgba(28,28,29,1) 0%, rgba(91,91,91,1) 100%, rgba(106,106,106,1) 100%);
+}
+
+.thumb {
+  width: 150px;
+  height: 150px;
+  border-radius: 75PX;
+}
+
+.thumb img {
+  width: 100%;
+  height: auto;
+  border-radius: 75px;
+}
+
+.info {
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.info p {
+  padding: 0.5em 0;
+}
+
+.info h1 {
+  font-size: 3em;
+}
