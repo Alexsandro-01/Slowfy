@@ -1,9 +1,7 @@
 import { useRouter } from 'next/router';
-
-import Loading from '@/components/Loading';
-import styles from '../styles/Login.module.css';
-import { useState } from 'react';
-
+import React, {useState} from 'react'
+import styles from '../styles/components/Login.module.css';
+import Loading from './Loading';
 
 function Login() {
   const [loadin, setLoadin] = useState(false);
@@ -14,9 +12,8 @@ function Login() {
   if (!login_url) {
     login_url = 'http://localhost:3000/api/login';
   }
-  
   return (
-    <main className={styles.login}>
+    <section className={styles.login}>
       <div>
         <h1>Slowfy</h1>
         <p>Vamos agrupar os seus dados de uso do Spotify, como artistas e músicas mais ouvidas!</p>
@@ -33,7 +30,7 @@ function Login() {
           }
         </button>
       </div>
-    </main>
+    </section>
   )
 }
 
