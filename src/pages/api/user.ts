@@ -36,20 +36,14 @@ export default function user(
       const access_token = body.access_token;
       const refresh_token = body.refresh_token;
 
-      const options = {
-        url: 'https://api.spotify.com/v1/me',
-        headers: { 'Authorization': 'Bearer ' + access_token },
-        json: true
-      };
-
       // pass the token to the browser to make requests from there
-      res.redirect('/#?' +
+      res.redirect('/user?' +
         querystring.stringify({
           access: access_token,
           refresh: refresh_token
         }));
     } else {
-      res.redirect('/#?' +
+      res.redirect('/user?' +
         querystring.stringify({
           error: 'invalid_token'
         }));
