@@ -11,7 +11,7 @@
 }
 
 .login h1 {
-  color: var(--principal-1);
+  color: var(--principal-2);
   font-size: 3em;
   padding: 0.3em 0;
 }
@@ -21,11 +21,12 @@
 }
 
 .login button {
-  height: 70px;
+  height: 60px;
   width: 171px;
   margin: 1em 0;
+  border: none;
   border-radius: 2em;
-  background-color: var(--principal-1);
+  background-color: var(--principal-2);
   font-weight: 700;
   font-size: 1em;
   color: var(--bg-color);
