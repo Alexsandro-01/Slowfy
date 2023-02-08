@@ -1,0 +1,38 @@
+.login {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login div {
+  text-align: center;
+}
+
+.login h1 {
+  color: var(--principal-1);
+  font-size: 3em;
+  padding: 0.3em 0;
+}
+
+.login p {
+  padding: 1em 0;
+}
+
+.login button {
+  height: 70px;
+  width: 171px;
+  margin: 1em 0;
+  border-radius: 2em;
+  background-color: var(--principal-1);
+  font-weight: 700;
+  font-size: 1em;
+  color: var(--bg-color);
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
+
+.login button:hover {
+  color: var(--color-mute);
+}
