@@ -9,6 +9,12 @@ const nextConfig = {
         port: '',
         pathname: '/platform/profilepic/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'i.scdn.co',
+        port: '',
+        pathname: '/image/**',
+      },
     ],
   },
 }
