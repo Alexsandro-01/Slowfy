@@ -17,7 +17,9 @@ export default function login(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  const scope = 'user-read-private user-read-email';
+
+  // permissões para os dados do usuário
+  const scope = 'user-read-private user-read-email user-read-recently-played user-top-read user-follow-read playlist-read-private playlist-read-collaborative';
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
       response_type: 'code',
