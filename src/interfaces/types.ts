@@ -1,44 +1,59 @@
-export interface data {
+export interface IData {
   access: string,
   refresh: string,
   date: Date,
 }
 
-export interface UserProfile {
+export enum ITopItems {
+  Artists = 'artists',
+  Tracks = 'tracks',
+}
+
+export enum ITopItemsPeriod {
+  Short = 'short_term',
+  Medium = 'medium_term',
+  Long = 'long_term'
+}
+
+export interface IRefreshedToken {
+  'access_token': string
+}
+
+export interface IUserProfile {
   country: string;
   display_name: string;
   email: string;
   explicit_content: {
-      filter_enabled: boolean,
-      filter_locked: boolean
+    filter_enabled: boolean,
+    filter_locked: boolean
   },
   external_urls: { spotify: string; };
   followers: { href: string | null; total: number; };
   href: string | null;
   id: string;
-  images: Image[];
+  images: IImage[];
   product: string;
   type: string;
   uri: string;
 }
 
-export interface Image {
+export interface IImage {
   url: string;
   height: number | null;
   width: number | null;
 }
 
-export interface playlists {
+export interface IPlaylists {
   "href": string,
   "limit": number | null,
-  "next": string,
+  "next": string | null,
   "offset": number | null,
-  "previous": string,
+  "previous": string | null,
   "total": number | null,
-  "items": playlist[]
+  "items": IPlaylist[]
 }
 
-export interface playlist {
+export interface IPlaylist {
   "collaborative": boolean,
   "description": string,
   "external_urls": {
@@ -46,21 +61,11 @@ export interface playlist {
   },
   "href": string,
   "id": string,
-  "images": [
-    {
-      "url": string,
-      "height": number | null,
-      "width": number | null
-    }
-  ],
+  "images": IImage[],
   "name": string,
   "owner": {
     "external_urls": {
       "spotify": string
-    },
-    "followers": {
-      "href": string,
-      "total": number | null
     },
     "href": string,
     "id": string,
@@ -68,12 +73,101 @@ export interface playlist {
     "uri": string,
     "display_name": string
   },
-  "public": true,
+  "public": boolean,
   "snapshot_id": string,
   "tracks": {
     "href": string,
     "total": number | null
   },
+  "type": string,
+  "uri": string
+}
+
+export interface IArtists {
+  "items": IArtist[],
+  "total": number,
+  "limit": number,
+  "offset": number,
+  "href": string,
+  "next": number | null,
+  "previous": number | null
+}
+
+export interface IArtist {
+  "external_urls": {
+    "spotify": string
+  },
+  "followers": {
+    "href": string | null,
+    "total": number
+  },
+  "genres": string[],
+  "href": string,
+  "id": string,
+  "images": IImage[],
+  "name": string,
+  "popularity": number,
+  "type": string,
+  "uri": string
+}
+
+export interface IMusics {
+  "items": IMusic[],
+  "total": number,
+  "limit": number,
+  "offset": number,
+  "href": string,
+  "next": string,
+  "previous": null
+}
+
+interface IMusicArtist {
+  "external_urls": {
+    "spotify": string
+  },
+  "href": string,
+  "id": string,
+  "name": string,
+  "type": string,
+  "uri": string
+}
+
+export interface IMusic {
+  "album": {
+    "album_type": string,
+    "artists": IMusicArtist[],
+    "available_markets": string[],
+    "external_urls": {
+      "spotify": string
+    },
+    "href": string,
+    "id": string,
+    "images": IImage[],
+    "name": string,
+    "release_date": string,
+    "release_date_precision": string,
+    "total_tracks": number,
+    "type": string,
+    "uri": string
+  },
+  "artists": IMusicArtist[],
+  "available_markets": string[],
+  "disc_number": number,
+  "duration_ms": number,
+  "explicit": boolean,
+  "external_ids": {
+    "isrc": string
+  },
+  "external_urls": {
+    "spotify": string
+  },
+  "href": string,
+  "id": string,
+  "is_local": boolean,
+  "name": string,
+  "popularity": number,
+  "preview_url": string,
+  "track_number": number,
   "type": string,
   "uri": string
 }
