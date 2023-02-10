@@ -31,7 +31,6 @@ function ArtistCard({ artist }: { artist: IArtist }) {
           </span>
         </p>
       </div>
-
     </div>
   )
 }
