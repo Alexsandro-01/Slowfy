@@ -1,24 +1,40 @@
 import { IMusic } from "@/interfaces/types"
 import Image from "next/image"
 
+import styles from "@/styles/components/MusicCards.module.css"
+
 function MusicCard({ music, index }: { music: IMusic, index: number }) {
+
+  function getMinutes(duration: number): string {
+    const ms = duration;
+
+    const totalSeg = ms / 1000;
+    const min = Math.floor(totalSeg / 60);
+    const seg = Math.floor(totalSeg % 60);
+
+    return `${min}:${seg}`;
+  }
+
   return (
-    <div>
-      <div>
-        {
-          index + 1
-        }
-      </div>
-      <div>
-        <div>
+    <div className={styles.container}>
+      <div className={styles['music-info']}>
+        <div className={styles['music-number']}>
+          <span>
+            {
+              index + 1
+            }
+          </span>
+        </div>
+        <div className={styles['img-card']}>
           <Image
-            src={music.album.images[1].url}
+            src={music.album.images[2].url}
             alt={music.album.name}
-            width='300'
-            height='300'
+            width='64'
+            height='64'
+            className={styles.img}
           />
         </div>
-        <div>
+        <div className={styles.text}>
           <p>
             <strong>
               {
@@ -27,16 +43,18 @@ function MusicCard({ music, index }: { music: IMusic, index: number }) {
             </strong>
           </p>
           <p>
-            {
-              music.artists.length > 1 ? (
-                music.artists.map((artist, index) => {
-                  if (index === 0) return <span key={artist.id}>{artist.name}</span>
-                  if (index > 0) return <span key={artist.id}>, {artist.name}</span>
-                })
-              ) : (
-                music.artists[0].name
-              )
-            }
+            <span>
+              {
+                music.artists.length > 1 ? (
+                  music.artists.map((artist, index) => {
+                    if (index === 0) return `${artist.name}`;
+                    if (index > 0) return `, ${artist.name}`;
+                  })
+                ) : (
+                  music.artists[0].name
+                )
+              }
+            </span>
           </p>
         </div>
       </div>
@@ -52,7 +70,9 @@ function MusicCard({ music, index }: { music: IMusic, index: number }) {
       <div>
         <p>
           <span>
-            tempo
+            {
+              getMinutes(music.duration_ms)
+            }
           </span>
         </p>
       </div>
