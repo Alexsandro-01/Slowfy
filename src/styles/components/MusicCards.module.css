@@ -1,0 +1,57 @@
+.container {
+  /* width: 200px; */
+  padding: .5em 1.5em;
+  /* margin: 15px; */
+  /* background: rgb(24,24,24);
+  background: linear-gradient(0deg, #111 0%, #222 100%); */
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  /* flex-direction: column; */
+  justify-content: space-between;
+  /* transition: .3s ease-in; */
+}
+
+.container:hover {
+  background: #222;
+}
+
+.music-info {
+  display: flex;
+}
+
+.music-number {
+  padding-right: 1.5em;
+  line-height: 50px;
+  text-align: center;
+}
+
+.img-card {
+  width: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.img {
+  width: 100%;
+  height: auto;
+}
+
+.text {
+  padding: 0 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.text p {
+  padding: .25em 0;
+}
+
+.container span {
+  color: var(--color-soft);
+}
+
+.ab {
+  color: var(--color-soft);
+}
