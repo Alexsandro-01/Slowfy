@@ -1,0 +1,67 @@
+.container {
+  padding: .5em 1.5em;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.container:hover {
+  background: #222;
+}
+
+.music-info {
+  display: flex;
+}
+
+.music-number {
+  padding-right: 1.5em;
+  line-height: 50px;
+  text-align: center;
+}
+
+.img-card {
+  width: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.img {
+  width: 100%;
+  height: auto;
+}
+
+.text {
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.text p {
+  padding: .25em 0;
+}
+
+.container span {
+  color: var(--color-soft);
+}
+
+.ab {
+  color: var(--color-soft);
+}
+
+@media (max-width: 596px) {
+  .container {
+    padding: .5em 1em;
+  }
+
+  .music-info {
+    max-width: 90%;
+  }
+  .music-number, .album-name {
+    display: none;
+  }
+
+  .text p {
+    font-size: .8em;
+  }
+}
