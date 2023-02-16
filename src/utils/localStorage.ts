@@ -1,11 +1,11 @@
-import { data } from "@/interfaces/types";
+import { IData } from "@/interfaces/types";
 
-export function saveitem(key: string, item: data) {
+export function saveItem(key: string, item: IData) {
   const data = JSON.stringify(item);
   localStorage.setItem(key, data);
 }
 
-export function getitem(key: string): data {
+export function getItem(key: string): IData {
   const item = localStorage.getItem(key);
   
   const dataUser = JSON.parse(item as string);
