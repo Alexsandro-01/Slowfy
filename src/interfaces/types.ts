@@ -171,3 +171,27 @@ export interface IMusic {
   "type": string,
   "uri": string
 }
+
+export interface ITracks {
+  "track": IMusic,
+  "played_at": string,
+    "context": {
+    "type": string,
+      "external_urls": {
+      "spotify": string
+    },
+    "href": string,
+      "uri": string
+  }
+}
+
+export interface IRecentMusics{
+  "items": ITracks[],
+    "next": string,
+      "cursors": {
+    "after": string,
+      "before": string
+  },
+  "limit": number,
+    "href": string
+}
