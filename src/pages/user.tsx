@@ -2,19 +2,49 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Image from 'next/image';
 
-import { getitem, saveitem } from '@/utils/localStorage';
-import { data, playlists, UserProfile } from '@/interfaces/types';
+import { 
+  IArtists,
+  IData,
+  IMusics,
+  IPlaylists,
+  IRecentMusics,
+  ITopItems,
+  ITopItemsPeriod,
+  IUserProfile 
+} from '@/interfaces/types';
 
-import { user } from '../mocks/user';
-import Aside from '@/components/Aside';
 import styles from '@/styles/User.module.css';
-import { fetchUserPlaylists, fetchRefreshToken } from '@/utils/fetchs/spotify';
+
+import {
+  fetchUserPlaylists,
+  fetchRefreshToken,
+  fetchProfile,
+  fetchTopItems,
+  fetchRecentMusicPlayed
+} from '@/utils/fetchs/spotify';
+import { getItem, saveItem } from '@/utils/localStorage';
+
+import ArtistCard from '@/components/ArtistCard';
+import MusicCard from '@/components/MusicCard';
+import PlaylistCard from '@/components/PlaylistCard';
+import NavBar from '@/components/NavBar';
+
+function publicPlaylsits(userPlaylists: IPlaylists) {
+  const result = userPlaylists.items.filter((playlist) => {
+    if (playlist.public) return playlist;
+  })
+
+  return result;
+}
 
 function User() {
-  const [profile, setprofile] = useState<UserProfile>()
-  const [playlists, setPlaylists] = useState<playlists>();
+  const [profile, setprofile] = useState<IUserProfile>()
+  const [playlists, setPlaylists] = useState<IPlaylists>();
+  const [artists, setArtists] = useState<IArtists>();
+  const [musics, setMusics] = useState<IMusics>();
+  const [recentPlayed, setRecentPlayed] = useState<IRecentMusics>();
 
-  
+
   const ROUTER = useRouter();
   let refreshTokenUrl = process.env.REFRESH_TOKEN_IRL;
 
@@ -22,30 +52,27 @@ function User() {
     refreshTokenUrl = 'http://localhost:3000/api/refresh-token'
   }
 
-
-  
-
-  
-
   async function getUser() {
-    const DATAUSER = getitem('slowfy');
+    const DATAUSER = getItem('slowfy');
 
-    // const user = await fetchProfile(dataUser.access);
-    setprofile(user);
-    // console.log(user);
+    const user = await fetchProfile(DATAUSER.access);
 
     if (user) {
-      const response = await fetchUserPlaylists(DATAUSER.access, profile?.id as string);
+      const playlistsResponse = await fetchUserPlaylists(DATAUSER.access);
+      const artistsResponse = await fetchTopItems(DATAUSER.access, ITopItems.Artists, ITopItemsPeriod.Short);
+      const musicsResponse = await fetchTopItems(DATAUSER.access, ITopItems.Tracks, ITopItemsPeriod.Short);
+      const recentPlayedResponse = await fetchRecentMusicPlayed(DATAUSER.access, 4);
 
-      setPlaylists(response);
+      setprofile(user)
+      setRecentPlayed(recentPlayedResponse)
+      setArtists(artistsResponse as IArtists);
+      setPlaylists(playlistsResponse);
+      setMusics(musicsResponse as IMusics)
     }
   }
 
-  
-
-
   function saveToken(token: string, refreshToken: string) {
-    const DATAUSER = getitem('slowfy');
+    const DATAUSER = getItem('slowfy');
 
     if (!DATAUSER) {
       const data = {
@@ -54,39 +81,36 @@ function User() {
         date: new Date()
       }
 
-      saveitem('slowfy', data);
+      saveItem('slowfy', data);
     }
 
     getUser();
   }
 
   function updateLocalToken(refreshedToken: string) {
-    const DATAUSER = getitem('slowfy');
+    const DATAUSER = getItem('slowfy');
     DATAUSER.access = refreshedToken;
     DATAUSER.date = new Date();
 
-    saveitem('slowfy', DATAUSER);
+    saveItem('slowfy', DATAUSER);
     getUser();
   }
 
-  async function validateTokenTime(dataUser: data) {
+  async function validateTokenTime(dataUser: IData) {
     const timeGap = new Date().getTime() - new Date(dataUser.date).getTime();
-      const requiredTimeGap = 3600 * 1000;
+    const requiredTimeGap = 3600 * 1000;
 
-      // console.log(timeGap)
-      // console.log(requiredTimeGap)
-      // console.log(timeGap >= requiredTimeGap)
-      if (timeGap >= requiredTimeGap) {
-        const newToken =  await fetchRefreshToken(dataUser.refresh, refreshTokenUrl as string);
+    if (timeGap >= requiredTimeGap) {
+      const newToken = await fetchRefreshToken(dataUser.refresh, refreshTokenUrl as string);
 
-        updateLocalToken(newToken.access_token);
-      } else {
-        getUser();
-      }
+      updateLocalToken(newToken.access_token);
+    } else {
+      getUser();
+    }
   }
 
   useEffect(() => {
-    const DATAUSER = getitem('slowfy');
+    const DATAUSER = getItem('slowfy');
 
     if (ROUTER.query.access) {
       saveToken(
@@ -94,48 +118,124 @@ function User() {
         ROUTER.query.refresh as string
       );
     }
-    
-    // remover essa complexidade do useEffect
+
     if (DATAUSER) {
       validateTokenTime(DATAUSER);
+    } else {
+      ROUTER.push('/');
     }
-    DATAUSER.date = new Date('2023-02-04');
-    // saveitem('slowfy', DATAUSER);
   }, [ROUTER.query])
 
   return (
-    <div className={styles.container}>
-      <Aside />
-      <main>
-        <section className={styles.header}>
-          <div className={styles.thumb}>
-            <Image
-              src={profile?.images[0].url as string} 
-              alt={`Imagem de perfil de ${profile?.display_name}`}
-              width="300"
-              height="300"
-            />
-          </div>
+    <main>
+      <section className={styles.header}>
+        <div className={styles.thumb}>
+          <Image
+            src={profile?.images[0].url as string}
+            alt={`Imagem de perfil de ${profile?.display_name}`}
+            width="300"
+            height="300"
+          />
+        </div>
 
-          <div className={styles.info}>
-            <p>
-              Perfil
-            </p>
-            <h1>
-              {
-                profile?.display_name
-              }
-            </h1>
-            <p>
-              { `Playlists: ${playlists?.items.length}` }
-            </p>
-          </div>
-        </section>
-        <section>
+        <div className={styles.info}>
+          <h1>
+            {
+              profile?.display_name
+            }
+          </h1>
+          <p>
+            <span>
+              Playlists:
+            </span>
+            {` ${playlists?.total}`}
+          </p>
+        </div>
+      </section>
 
-        </section>
-      </main>
-    </div>
+      <section className={styles.container}>
+        <div className={styles.content}>
+          <h3>
+            <a href="">
+              Artistas mais tocados este mês
+            </a>
+          </h3>
+          <div className={styles['cards-container']}>
+            {
+              artists && (
+                artists.items.map((artist) => (
+                  <ArtistCard key={artist.id} artist={artist} />
+                ))
+              )
+            }
+          </div>
+        </div>
+
+        <div className={styles.content}>
+          <h3>
+            <a href="">
+              Músicas mais tocadas este mês
+            </a>
+          </h3>
+          <div className={styles['music-cards-container']}>
+            {
+              musics && (
+                musics.items.map((music, index) => (
+                  <MusicCard
+                    key={music.id}
+                    music={music}
+                    index={index}
+                  />
+                )).slice(0, 4)
+              )
+            }
+          </div>
+        </div>
+
+        <div className={styles.content}>
+          <h3>
+            <a href="">
+              Playlists públicas
+            </a>
+          </h3>
+          <div className={styles['cards-container']}>
+            {
+              playlists && (
+                publicPlaylsits(playlists).map((playlist) => (
+                  <PlaylistCard
+                    key={playlist.id}
+                    playlist={playlist}
+                  />
+                ))
+              )
+            }
+          </div>
+        </div>
+
+        <div className={styles.content}>
+          <h3>
+            <a href="">
+              Músicas tocadas recentemente
+            </a>
+          </h3>
+          <div className={styles['music-cards-container']}>
+            {
+              recentPlayed && (
+                recentPlayed.items.map((music, index) => (
+                  <MusicCard
+                    key={music.track.id}
+                    music={music.track}
+                    index={index}
+                  />
+                ))
+              )
+            }
+          </div>
+        </div>
+      </section>
+
+      <NavBar />
+    </main>
   )
 }
 
