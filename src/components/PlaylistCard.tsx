@@ -23,6 +23,11 @@ function PlaylistCard({ playlist }: { playlist: IPlaylist }) {
             }
           </strong>
         </p>
+        <p>
+          <span>
+            { `${playlist.tracks.total} músicas`}
+          </span>
+        </p>
       </div>
     </div>
   )
