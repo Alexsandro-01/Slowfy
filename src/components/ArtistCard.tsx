@@ -24,7 +24,12 @@ function ArtistCard({ artist }: { artist: IArtist }) {
           </strong>
         </p>
         <p>
-          <span>
+          <span className={styles.followers}>
+            {
+              `${artist.followers.total.toLocaleString()} seguidores`
+            }
+          </span>
+          <span className={styles.type}>
             {
               artist.type
             }
