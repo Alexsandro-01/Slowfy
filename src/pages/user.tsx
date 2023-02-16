@@ -46,7 +46,7 @@ function User() {
 
 
   const ROUTER = useRouter();
-  let refreshTokenUrl = process.env.REFRESH_TOKEN_IRL;
+  let refreshTokenUrl = process.env.NEXT_REFRESH_TOKEN_IRL;
 
   if (process.env.NODE_ENV !== 'production') {
     refreshTokenUrl = 'http://localhost:3000/api/refresh-token'
