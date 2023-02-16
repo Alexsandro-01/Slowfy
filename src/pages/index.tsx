@@ -1,16 +1,15 @@
 import Head from 'next/head'
 import {useRouter} from 'next/router'
 import styles from '@/styles/Home.module.css'
-import { ParsedUrlQuery } from 'querystring';
 import { useEffect } from 'react';
-import { getitem, saveitem } from '@/utils/localStorage';
+import { getItem } from '@/utils/localStorage';
 import Login from '@/components/Login';
 
 export default function Home() {
   const router = useRouter();
 
   function checkIfHasToken() {
-    const dataUser = getitem('slowfy');
+    const dataUser = getItem('slowfy');
 
     if (dataUser) {
       router.push('/user');
