@@ -1,15 +1,9 @@
 .container {
-  /* width: 200px; */
   padding: .5em 1.5em;
-  /* margin: 15px; */
-  /* background: rgb(24,24,24);
-  background: linear-gradient(0deg, #111 0%, #222 100%); */
   border-radius: 5px;
   display: flex;
   align-items: center;
-  /* flex-direction: column; */
   justify-content: space-between;
-  /* transition: .3s ease-in; */
 }
 
 .container:hover {
@@ -38,10 +32,9 @@
 }
 
 .text {
-  padding: 0 1em;
+  padding-left: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 
 .text p {
@@ -54,4 +47,21 @@
 
 .ab {
   color: var(--color-soft);
+}
+
+@media (max-width: 596px) {
+  .container {
+    padding: .5em 1em;
+  }
+
+  .music-info {
+    max-width: 90%;
+  }
+  .music-number, .album-name {
+    display: none;
+  }
+
+  .text p {
+    font-size: .8em;
+  }
 }
