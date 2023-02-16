@@ -9,9 +9,10 @@ function Login() {
   const router = useRouter();
   let login_url = process.env.NEXT_PUBLIC_LOGIN_URL;
 
-  if (!login_url) {
+  if (process.env.NODE_ENV !== 'production') {
     login_url = 'http://localhost:3000/api/login';
   }
+
   return (
     <section className={styles.login}>
       <div>
