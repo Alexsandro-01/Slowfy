@@ -1,9 +1,10 @@
 .container {
   padding: .5em 1.5em;
   border-radius: 5px;
-  display: flex;
   align-items: center;
-  justify-content: space-between;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 2fr 1fr 1fr;
 }
 
 .container:hover {
@@ -32,6 +33,7 @@
 }
 
 .text {
+  max-width: 80%;
   padding-left: 10px;
   display: flex;
   flex-direction: column;
@@ -39,14 +41,17 @@
 
 .text p {
   padding: .25em 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .container span {
   color: var(--color-soft);
 }
 
-.ab {
-  color: var(--color-soft);
+.duration {
+  text-align: end;
 }
 
 @media (max-width: 596px) {
@@ -57,7 +62,9 @@
   .music-info {
     max-width: 90%;
   }
-  .music-number, .album-name {
+
+  .music-number,
+  .album-name {
     display: none;
   }
 
