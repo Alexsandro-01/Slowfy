@@ -229,7 +229,7 @@ function User() {
                     recentPlayed && (
                       recentPlayed.items.map((music, index) => (
                         <MusicCard
-                          key={music.track.id}
+                          key={music.track.id + index}
                           music={music.track}
                           index={index}
                         />
