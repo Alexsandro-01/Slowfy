@@ -40,10 +40,22 @@
   border-top: solid 5px var(--principal-2);
 }
 
+.nav li a.hover {
+  color: var(--principal-2);
+  background-color: #333;
+  border-top: solid 5px var(--principal-2);
+}
+
 .nav span {
   font-size: .8em;
 }
 
 .icon {
   font-size: 25px;
+}
+
+@media (max-width: 596px) {
+  .nav span {
+    font-size: .7em;
+  }
 }
