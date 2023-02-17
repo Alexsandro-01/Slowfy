@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Image from 'next/image';
 
-import { 
+import {
   IArtists,
   IData,
   IMusics,
@@ -10,7 +10,7 @@ import {
   IRecentMusics,
   ITopItems,
   ITopItemsPeriod,
-  IUserProfile 
+  IUserProfile
 } from '@/interfaces/types';
 
 import styles from '@/styles/User.module.css';
@@ -28,6 +28,7 @@ import ArtistCard from '@/components/ArtistCard';
 import MusicCard from '@/components/MusicCard';
 import PlaylistCard from '@/components/PlaylistCard';
 import NavBar from '@/components/NavBar';
+import Loading from '@/components/Loading';
 
 function publicPlaylsits(userPlaylists: IPlaylists) {
   const result = userPlaylists.items.filter((playlist) => {
@@ -43,6 +44,7 @@ function User() {
   const [artists, setArtists] = useState<IArtists>();
   const [musics, setMusics] = useState<IMusics>();
   const [recentPlayed, setRecentPlayed] = useState<IRecentMusics>();
+  const [isLoading, setIsLoading] = useState(true);
 
 
   const ROUTER = useRouter();
@@ -68,6 +70,7 @@ function User() {
       setArtists(artistsResponse as IArtists);
       setPlaylists(playlistsResponse);
       setMusics(musicsResponse as IMusics)
+      setIsLoading(false);
     }
   }
 
@@ -127,114 +130,120 @@ function User() {
   }, [ROUTER.query])
 
   return (
-    <main>
-      <section className={styles.header}>
-        <div className={styles.thumb}>
-          <Image
-            src={profile?.images[0].url as string}
-            alt={`Imagem de perfil de ${profile?.display_name}`}
-            width="300"
-            height="300"
-          />
-        </div>
+    <main className={styles.main}>
+      {
+        isLoading ? <Loading /> : (
+          <>
+            <section className={styles.header}>
+              <div className={styles.thumb}>
+                <Image
+                  src={profile?.images[0].url as string}
+                  alt={`Imagem de perfil de ${profile?.display_name}`}
+                  width="300"
+                  height="300"
+                />
+              </div>
 
-        <div className={styles.info}>
-          <h1>
-            {
-              profile?.display_name
-            }
-          </h1>
-          <p>
-            <span>
-              Playlists:
-            </span>
-            {` ${playlists?.total}`}
-          </p>
-        </div>
-      </section>
+              <div className={styles.info}>
+                <h1>
+                  {
+                    profile?.display_name
+                  }
+                </h1>
+                <p>
+                  <span>
+                    Playlists:
+                  </span>
+                  {` ${playlists?.total}`}
+                </p>
+              </div>
+            </section>
 
-      <section className={styles.container}>
-        <div className={styles.content}>
-          <h3>
-            <a href="">
-              Artistas mais tocados este mês
-            </a>
-          </h3>
-          <div className={styles['cards-container']}>
-            {
-              artists && (
-                artists.items.map((artist) => (
-                  <ArtistCard key={artist.id} artist={artist} />
-                ))
-              )
-            }
-          </div>
-        </div>
+            <section className={styles.container}>
+              <div className={styles.content}>
+                <h3>
+                  <a href="">
+                    Artistas mais tocados este mês
+                  </a>
+                </h3>
+                <div className={styles['cards-container']}>
+                  {
+                    artists && (
+                      artists.items.map((artist) => (
+                        <ArtistCard key={artist.id} artist={artist} />
+                      ))
+                    )
+                  }
+                </div>
+              </div>
 
-        <div className={styles.content}>
-          <h3>
-            <a href="">
-              Músicas mais tocadas este mês
-            </a>
-          </h3>
-          <div className={styles['music-cards-container']}>
-            {
-              musics && (
-                musics.items.map((music, index) => (
-                  <MusicCard
-                    key={music.id}
-                    music={music}
-                    index={index}
-                  />
-                )).slice(0, 4)
-              )
-            }
-          </div>
-        </div>
+              <div className={styles.content}>
+                <h3>
+                  <a href="">
+                    Músicas mais tocadas este mês
+                  </a>
+                </h3>
+                <div className={styles['music-cards-container']}>
+                  {
+                    musics && (
+                      musics.items.map((music, index) => (
+                        <MusicCard
+                          key={music.id}
+                          music={music}
+                          index={index}
+                        />
+                      )).slice(0, 4)
+                    )
+                  }
+                </div>
+              </div>
 
-        <div className={styles.content}>
-          <h3>
-            <a href="">
-              Playlists públicas
-            </a>
-          </h3>
-          <div className={styles['cards-container']}>
-            {
-              playlists && (
-                publicPlaylsits(playlists).map((playlist) => (
-                  <PlaylistCard
-                    key={playlist.id}
-                    playlist={playlist}
-                  />
-                ))
-              )
-            }
-          </div>
-        </div>
+              <div className={styles.content}>
+                <h3>
+                  <a href="">
+                    Playlists públicas
+                  </a>
+                </h3>
+                <div className={styles['cards-container']}>
+                  {
+                    playlists && (
+                      publicPlaylsits(playlists).map((playlist) => (
+                        <PlaylistCard
+                          key={playlist.id}
+                          playlist={playlist}
+                        />
+                      ))
+                    )
+                  }
+                </div>
+              </div>
 
-        <div className={styles.content}>
-          <h3>
-            <a href="">
-              Músicas tocadas recentemente
-            </a>
-          </h3>
-          <div className={styles['music-cards-container']}>
-            {
-              recentPlayed && (
-                recentPlayed.items.map((music, index) => (
-                  <MusicCard
-                    key={music.track.id}
-                    music={music.track}
-                    index={index}
-                  />
-                ))
-              )
-            }
-          </div>
-        </div>
-      </section>
+              <div className={styles.content}>
+                <h3>
+                  <a href="">
+                    Músicas tocadas recentemente
+                  </a>
+                </h3>
+                <div className={styles['music-cards-container']}>
+                  {
+                    recentPlayed && (
+                      recentPlayed.items.map((music, index) => (
+                        <MusicCard
+                          key={music.track.id + index}
+                          music={music.track}
+                          index={index}
+                        />
+                      ))
+                    )
+                  }
+                </div>
+              </div>
+            </section>
 
-      <NavBar />
+            <NavBar />
+          </>
+        )
+      }
     </main>
   )
 }

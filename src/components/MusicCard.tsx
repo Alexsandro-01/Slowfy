@@ -67,7 +67,7 @@ function MusicCard({ music, index }: { music: IMusic, index: number }) {
           </span>
         </p>
       </div>
-      <div>
+      <div className={styles.duration}>
         <p>
           <span>
             {
