@@ -1,3 +1,10 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+}
+
 .header {
   display: flex;
   padding: 2em;
