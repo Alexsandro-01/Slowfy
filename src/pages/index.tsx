@@ -26,7 +26,7 @@ export default function Home() {
         <title>Create Next App</title>
         <meta name="description" content="Slowfy, um aplicativo de informações do Spotify" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#1db954">
+        <meta name="theme-color" content="#1db954" />
         <link rel="icon" href="/spotify.ico" />
       </Head>
       <main className={styles.main}>
