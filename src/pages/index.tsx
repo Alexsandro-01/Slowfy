@@ -1,11 +1,14 @@
+import { useEffect, useState } from 'react';
 import Head from 'next/head'
 import {useRouter} from 'next/router'
+
 import styles from '@/styles/Home.module.css'
-import { useEffect } from 'react';
 import { getItem } from '@/utils/localStorage';
 import Login from '@/components/Login';
+import Loading from '@/components/Loading';
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
   function checkIfHasToken() {
@@ -13,6 +16,8 @@ export default function Home() {
 
     if (dataUser) {
       router.push('/user');
+    } else {
+      setIsLoading(false);
     }
   }
   
@@ -30,7 +35,9 @@ export default function Home() {
         <link rel="icon" href="/spotify.ico" />
       </Head>
       <main className={styles.main}>
-        <Login />
+        {
+          isLoading ? <Loading /> : <Login />
+        }
       </main>
     </>
   )
