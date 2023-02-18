@@ -7,11 +7,7 @@ type Data = {
 }
 
 const client_id = process.env.CLIENT_ID
-let redirect_uri = process.env.REDIRECT_URI
-
-if (process.env.NODE_ENV !== 'production') {
-  redirect_uri = 'http://localhost:3000/api/user'
-}
+const redirect_uri = process.env.REDIRECT_URI
 
 export default function login(
   req: NextApiRequest,

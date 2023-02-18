@@ -10,11 +10,7 @@ export default function user(
 
   const client_id = process.env.CLIENT_ID
   const client_secret = process.env.CLIENT_SECRET
-  let redirect_uri = process.env.REDIRECT_URI
-
-  if (process.env.NODE_ENV !== 'production') {
-    redirect_uri = 'http://localhost:3000/api/user'
-  }
+  const redirect_uri = process.env.REDIRECT_URI
 
   const buff = Buffer.from(client_id + ':' + client_secret).toString('base64')
   const authOptions = {
