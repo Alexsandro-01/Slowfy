@@ -7,11 +7,7 @@ function Login() {
   const [loadin, setLoadin] = useState(false);
 
   const router = useRouter();
-  let login_url = process.env.NEXT_PUBLIC_LOGIN_URL;
-
-  if (process.env.NODE_ENV !== 'production') {
-    login_url = 'http://localhost:3000/api/login';
-  }
+  const login_url = process.env.NEXT_PUBLIC_LOGIN_URL;
 
   return (
     <section className={styles.login}>

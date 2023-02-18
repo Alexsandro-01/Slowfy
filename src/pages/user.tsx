@@ -48,11 +48,7 @@ function User() {
 
 
   const ROUTER = useRouter();
-  let refreshTokenUrl = process.env.NEXT_REFRESH_TOKEN_IRL;
-
-  if (process.env.NODE_ENV !== 'production') {
-    refreshTokenUrl = 'http://localhost:3000/api/refresh-token'
-  }
+  const refreshTokenUrl = process.env.NEXT_PUBLIC_REFRESH_TOKEN_IRL;
 
   async function getUser() {
     const DATAUSER = getItem('slowfy');
@@ -104,6 +100,7 @@ function User() {
     const requiredTimeGap = 3600 * 1000;
 
     if (timeGap >= requiredTimeGap) {
+      console.log(refreshTokenUrl)
       const newToken = await fetchRefreshToken(dataUser.refresh, refreshTokenUrl as string);
 
       updateLocalToken(newToken.access_token);
@@ -152,7 +149,7 @@ function User() {
                 </h1>
                 <p>
                   <span>
-                    Playlists:
+                    Playlistsss:
                   </span>
                   {` ${playlists?.total}`}
                 </p>
