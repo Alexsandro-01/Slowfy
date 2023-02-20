@@ -1,7 +1,8 @@
-import { IMusic } from "@/interfaces/types"
-import Image from "next/image"
+import React from 'react';
+import { IMusic } from '@/interfaces/types';
+import Image from 'next/image';
 
-import styles from "@/styles/components/MusicCards.module.css"
+import styles from '@/styles/components/MusicCards.module.css';
 
 function MusicCard({ music, index }: { music: IMusic, index: number }) {
 
@@ -77,7 +78,7 @@ function MusicCard({ music, index }: { music: IMusic, index: number }) {
         </p>
       </div>
     </div>
-  )
+  );
 }
 
-export default MusicCard
+export default MusicCard;

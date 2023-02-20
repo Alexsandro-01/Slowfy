@@ -1,17 +1,17 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextApiRequest, NextApiResponse } from 'next';
 import request from 'request';
 
 export default function Handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const client_id = process.env.CLIENT_ID
-  const client_secret = process.env.CLIENT_SECRET
+  const client_id = process.env.CLIENT_ID;
+  const client_secret = process.env.CLIENT_SECRET;
 
-  const buff = Buffer.from(client_id + ':' + client_secret).toString('base64')
+  const buff = Buffer.from(client_id + ':' + client_secret).toString('base64');
   
   // ****
-  const body = JSON.parse(req.body)
+  const body = JSON.parse(req.body);
   const refresh_token = body.refresh_token;
 
   const authOptions = {

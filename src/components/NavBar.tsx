@@ -1,8 +1,10 @@
-import styles from '@/styles/components/Navbar.module.css'
-import { useRouter } from 'next/router'
-import {GiBackwardTime, GiMicrophone} from 'react-icons/gi'
-import {FiMusic, FiUser} from 'react-icons/fi'
-import {RiPlayListLine} from 'react-icons/ri'
+import React from 'react';
+import { useRouter } from 'next/router';
+
+import styles from '@/styles/components/Navbar.module.css';
+import { GiBackwardTime, GiMicrophone } from 'react-icons/gi';
+import { FiMusic, FiUser } from 'react-icons/fi';
+import { RiPlayListLine } from 'react-icons/ri';
 
 function NavBar() {
   const router = useRouter();
@@ -45,7 +47,7 @@ function NavBar() {
         </li>
       </ul>
     </nav>
-  )
+  );
 }
 
-export default NavBar
+export default NavBar;
