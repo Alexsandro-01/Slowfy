@@ -55,7 +55,20 @@
 }
 
 @media (max-width: 596px) {
+  .nav {
+    height: 60px;
+  }
+  
   .nav span {
     font-size: .7em;
   }
+
+  .nav li a {
+    gap: 5px;
+  }
+
+  .icon {
+    font-size: 1.25em;
+  }
+  
 }

@@ -7,6 +7,7 @@
 
 .header {
   display: flex;
+  gap: 10px;
   padding: 2em;
   background: rgb(24,24,24);
   background: linear-gradient(0deg, #111 0%, var(--principal-2) 100%);
@@ -25,7 +26,7 @@
 }
 
 .info {
-  padding-left: 2em;
+  /* padding-left: 2em; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -94,7 +95,7 @@
   }
 
   .info h1 {
-    font-size: 1.4em;
+    font-size: 1.25em;
   }
 
   .thumb {
