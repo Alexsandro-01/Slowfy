@@ -1,5 +1,6 @@
-import { IArtist } from "@/interfaces/types"
-import Image from "next/image"
+import React from 'react';
+import { IArtist } from '@/interfaces/types';
+import Image from 'next/image';
 
 import styles from '@/styles/components/Artistscard.module.css';
 
@@ -37,7 +38,7 @@ function ArtistCard({ artist }: { artist: IArtist }) {
         </p>
       </div>
     </div>
-  )
+  );
 }
 
-export default ArtistCard
+export default ArtistCard;

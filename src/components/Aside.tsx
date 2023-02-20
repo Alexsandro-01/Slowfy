@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 function Aside() {
   return (
     <aside>
       barra lateral
     </aside>
-  )
+  );
 }
 
-export default Aside
+export default Aside;

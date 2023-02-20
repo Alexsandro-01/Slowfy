@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React, {useState} from 'react'
+import React, { useState } from 'react';
 import styles from '../styles/components/Login.module.css';
 import Loading from './Loading';
 
@@ -28,7 +28,7 @@ function Login() {
         </button>
       </div>
     </section>
-  )
+  );
 }
 
-export default Login
+export default Login;
