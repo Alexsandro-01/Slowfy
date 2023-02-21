@@ -1,8 +1,7 @@
 .container {
-  width: 200px;
+  max-width: 200px;
   padding: 1em;
-  margin: 15px;
-  background: rgb(24,24,24);
+  background: rgb(24, 24, 24);
   background: linear-gradient(0deg, #111 0%, #222 100%);
   border-radius: 5px;
   display: flex;
@@ -22,6 +21,7 @@
   width: 140px;
   border-radius: 70px;
   height: 140px;
+  margin: auto;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -57,12 +57,12 @@
     align-items: center;
     transition: .3s ease-in;
   }
-  
+
   .container:hover {
     background: #222;
     box-shadow: none;
   }
-  
+
   .img-container {
     box-shadow: none;
     width: 50px;
@@ -72,17 +72,17 @@
     display: flex;
     align-items: center;
   }
-  
+
   .img {
     width: 100%;
     height: auto;
   }
-  
+
   .container p {
     padding: .25em 0;
     font-size: .8em;
   }
-  
+
   .container span {
     color: var(--color-soft);
   }
