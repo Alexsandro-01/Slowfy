@@ -4,12 +4,14 @@ export interface IData {
   date: Date,
 }
 
-export enum ITopItems {
-  Artists = 'artists',
-  Tracks = 'tracks',
+export enum ILimit {
+  Four = 4,
+  Ten = 10,
+  Twenty = 20,
+  Fifity = 50
 }
 
-export enum ITopItemsPeriod {
+export enum IPeriod {
   Short = 'short_term',
   Medium = 'medium_term',
   Long = 'long_term'
@@ -175,23 +177,23 @@ export interface IMusic {
 export interface ITracks {
   'track': IMusic,
   'played_at': string,
-    'context': {
+  'context': {
     'type': string,
-      'external_urls': {
+    'external_urls': {
       'spotify': string
     },
     'href': string,
-      'uri': string
+    'uri': string
   }
 }
 
-export interface IRecentMusics{
+export interface IRecentMusics {
   'items': ITracks[],
-    'next': string,
-      'cursors': {
+  'next': string,
+  'cursors': {
     'after': string,
-      'before': string
+    'before': string
   },
   'limit': number,
-    'href': string
+  'href': string
 }
