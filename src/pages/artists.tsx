@@ -46,7 +46,8 @@ function Artists() {
     } else {
       router.push('/');
     }
-  });
+  }, [artists]);
+
   return (
     <main className={styles.main}>
       {
@@ -57,9 +58,9 @@ function Artists() {
                 Principais artistas
               </h2>
               <div>
-                <p>últimas 4 semanas</p>
-                <p>Últimos 6 meses</p>
-                <p>Desde sempre</p>
+                <button>Últimas 4 semanas</button>
+                <button>Últimos 6 meses</button>
+                <button>Desde sempre</button>
               </div>
             </nav>
 
