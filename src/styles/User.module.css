@@ -9,8 +9,8 @@
   display: flex;
   gap: 10px;
   padding: 2em;
-  background: rgb(24,24,24);
-  background: linear-gradient(0deg, #111 0%, var(--principal-2) 100%);
+  background: rgb(24, 24, 24);
+  background: linear-gradient(0deg, #222 0%, var(--principal-2) 100%);
 }
 
 .thumb {
@@ -26,7 +26,6 @@
 }
 
 .info {
-  /* padding-left: 2em; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -45,7 +44,7 @@
 }
 
 .container {
-  background: rgb(24,24,24);
+  background: rgb(24, 24, 24);
   background: linear-gradient(0deg, #111 0%, #222 100%);
   position: relative;
   padding-bottom: 7em;
@@ -61,8 +60,8 @@
 }
 
 .content h3 a {
-   color: var(--color-mute);
-   text-decoration: none;
+  color: var(--color-mute);
+  text-decoration: none;
 }
 
 .content h3 a:hover {
@@ -71,7 +70,10 @@
 }
 
 .cards-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 25px;
+  grid-auto-flow: column;
 }
 
 .music-cards-container {
@@ -83,7 +85,7 @@
   .info h1 {
     font-size: 2em;
   }
-} 
+}
 
 @media (max-width: 596px) {
   .header {
@@ -115,6 +117,7 @@
   }
 
   .cards-container {
-    flex-direction: column;
+    grid-auto-flow: unset;
+    gap: 10px;
   }
 }
