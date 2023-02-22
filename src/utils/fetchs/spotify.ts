@@ -20,7 +20,7 @@ export async function fetchUserPlaylists(code: string): Promise<IPlaylists> {
 }
 
 export async function fetchTopMusics(code: string, period: IPeriod, limit: ILimit): Promise<IArtists | IMusics> {
-  const result = await fetch(`https://api.spotify.com/v1/me/top/trascks?limit=${limit}&time_range=${period}`, {
+  const result = await fetch(`https://api.spotify.com/v1/me/top/tracks?limit=${limit}&time_range=${period}`, {
     headers: {
       Authorization: `Bearer ${code}`,
       'Content-Type': 'application/json'
