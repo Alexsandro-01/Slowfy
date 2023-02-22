@@ -8,14 +8,10 @@
 }
 
 .nav {
-  max-width: 1280px;
-  min-width: 1280px;
   display: flex;
   align-items: flex-end;
-  margin: auto;
   justify-content: space-between;
-  height: 6em;
-  margin-bottom: 6em;
+  padding: 2em;
 }
 
 .nav div {
@@ -23,13 +19,46 @@
   gap: 10px;
 }
 
+.nav button {
+  background-color: transparent;
+  padding: 1em;
+  border-radius: 40px;
+  border: solid 2px var(--color-mute);
+  color: var(--color-mute);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.nav button:hover {
+  background-color: var(--color-mute);
+  border: solid 2px var(--color-mute);
+  color: var(--bg-color);
+}
+
 .container {
-  margin: auto;
-  max-width: 1280px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 25px;
   min-height: 80vh;
+  padding: 2em;
   padding-bottom: 7em;
+}
+
+@media (max-width: 596px) {
+  .nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    padding: 1em;
+  }
+
+  .nav button {
+    font-size: .6em;
+  }
+
+  .container {
+    padding: 1em;
+    padding-bottom: 7em;
+    gap: 10px;
+  }
 }
