@@ -145,7 +145,7 @@ function User() {
                 </h1>
                 <p>
                   <span>
-                    Playlistsss:
+                    Playlists:
                   </span>
                   {` ${playlists?.total}`}
                 </p>
