@@ -1,8 +1,6 @@
 .container {
-  width: 200px;
   padding: 1em;
-  margin: 15px;
-  background: rgb(24,24,24);
+  background: rgb(24, 24, 24);
   background: linear-gradient(0deg, #111 0%, #222 100%);
   border-radius: 5px;
   display: flex;
@@ -21,6 +19,7 @@
   box-shadow: 10px 10px 15px #111;
   width: 140px;
   border-radius: 70px;
+  margin: auto;
   height: 140px;
   overflow: hidden;
   display: flex;
@@ -46,8 +45,8 @@
 
 @media (max-width: 596px) {
   .container {
-    width: 100vw;
-    padding: .5em 1em;
+    width: 100%;
+    padding: .5em;
     background: none;
     margin: 0;
     border-radius: 5px;
@@ -57,14 +56,15 @@
     align-items: center;
     transition: .3s ease-in;
   }
-  
+
   .container:hover {
     background: #222;
     box-shadow: none;
   }
-  
+
   .img-container {
     box-shadow: none;
+    margin: 0;
     width: 50px;
     border-radius: 25px;
     height: 50px;
@@ -72,17 +72,17 @@
     display: flex;
     align-items: center;
   }
-  
+
   .img {
     width: 100%;
     height: auto;
   }
-  
+
   .container p {
     padding: .25em 0;
     font-size: .8em;
   }
-  
+
   .container span {
     color: var(--color-soft);
   }

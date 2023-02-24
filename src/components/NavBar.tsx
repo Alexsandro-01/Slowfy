@@ -14,34 +14,36 @@ function NavBar() {
     <nav className={styles.nav}>
       <ul>
         <li>
-          <a href="" className={
+          <a href="/user" className={
             path === '/user' ? styles.hover : ''
           }>
-            <FiUser className={styles.icon}/>
+            <FiUser className={styles.icon} />
             <span>Perfil</span>
           </a>
         </li>
         <li>
-          <a href="">
-            <GiMicrophone className={styles.icon}/>
+          <a href="/artists" className={
+            path === '/artists' ? styles.hover : ''
+          }>
+            <GiMicrophone className={styles.icon} />
             <span>Top Artistas</span>
           </a>
         </li>
         <li>
           <a href="">
-            <FiMusic className={styles.icon}/>
+            <FiMusic className={styles.icon} />
             <span>Top Músicas</span>
           </a>
         </li>
         <li>
           <a href="">
-            <GiBackwardTime className={styles.icon}/>
+            <GiBackwardTime className={styles.icon} />
             <span>Recente</span>
           </a>
         </li>
         <li>
           <a href="">
-            <RiPlayListLine className={styles.icon}/>
+            <RiPlayListLine className={styles.icon} />
             <span>Playlists</span>
           </a>
         </li>
