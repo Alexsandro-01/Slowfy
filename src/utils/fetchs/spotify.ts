@@ -1,4 +1,14 @@
-import { IArtists, ILimit, IMusics, IPlaylists, IRecentMusics, IRefreshedToken, IPeriod, IUserProfile } from '@/interfaces/types';
+import {
+  IArtists,
+  IArtist,
+  ILimit,
+  IMusics,
+  IPlaylists,
+  IRecentMusics,
+  IRefreshedToken,
+  IPeriod,
+  IUserProfile
+} from '@/interfaces/types';
 
 
 export async function fetchProfile(code: string): Promise<IUserProfile> {
@@ -19,7 +29,7 @@ export async function fetchUserPlaylists(code: string): Promise<IPlaylists> {
   return await result.json();
 }
 
-export async function fetchTopMusics(code: string, period: IPeriod, limit: ILimit): Promise<IArtists | IMusics> {
+export async function fetchTopMusics(code: string, period: IPeriod, limit: ILimit): Promise<IMusics> {
   const result = await fetch(`https://api.spotify.com/v1/me/top/tracks?limit=${limit}&time_range=${period}`, {
     headers: {
       Authorization: `Bearer ${code}`,
@@ -30,7 +40,7 @@ export async function fetchTopMusics(code: string, period: IPeriod, limit: ILimi
   return await result.json();
 }
 
-export async function fetchTopArtists(code: string, period: IPeriod, limit: number): Promise<IArtists | IMusics> {
+export async function fetchTopArtists(code: string, period: IPeriod, limit: number): Promise<IArtists> {
   const result = await fetch(`https://api.spotify.com/v1/me/top/artists?limit=${limit}&time_range=${period}`, {
     headers: {
       Authorization: `Bearer ${code}`,
@@ -40,6 +50,19 @@ export async function fetchTopArtists(code: string, period: IPeriod, limit: numb
 
   return await result.json();
 }
+
+export async function fetchArtist(code: string, artistId: string): Promise<IArtist> {
+  const result = await fetch(`https://api.spotify.com/v1/artists/${artistId}`, {
+    headers: {
+      Authorization: `Bearer ${code}`,
+      'Content-Type': 'application/json'
+    }
+  });
+
+  return await result.json();
+}
+
+
 
 export async function fetchRecentMusicPlayed(code: string, limit: number): Promise<IRecentMusics> {
   const result = await fetch(`https://api.spotify.com/v1/me/player/recently-played?limit=${limit}`, {
