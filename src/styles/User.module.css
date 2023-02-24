@@ -7,7 +7,7 @@
 
 .header {
   display: flex;
-  gap: 10px;
+  gap: 20px;
   padding: 2em;
   background: rgb(24, 24, 24);
   background: linear-gradient(0deg, #222 0%, var(--principal-2) 100%);
@@ -90,6 +90,7 @@
 @media (max-width: 596px) {
   .header {
     padding: 1em;
+    gap: 10px;
   }
 
   .info p {
