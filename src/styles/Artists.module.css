@@ -23,7 +23,7 @@
   background-color: transparent;
   padding: 1em;
   border-radius: 40px;
-  border: solid 2px var(--color-mute);
+  border: solid 1px var(--color-mute);
   color: var(--color-mute);
   cursor: pointer;
   font-weight: 600;
@@ -31,15 +31,27 @@
 
 .nav button:hover {
   background-color: var(--color-mute);
-  border: solid 2px var(--color-mute);
+  border: solid 1px var(--color-mute);
   color: var(--bg-color);
+}
+
+.nav .btn-hover {
+  background-color: var(--color-mute);
+  border: solid 1px var(--color-mute);
+  color: var(--bg-color);
+}
+
+.box {
+  min-height: 90vh;
+  display: grid;
+  grid-template-columns: 1fr;
 }
 
 .container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 25px;
-  min-height: 80vh;
+  min-height: 100%;
   padding: 2em;
   padding-bottom: 7em;
 }
