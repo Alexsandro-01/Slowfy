@@ -1,6 +1,7 @@
 .dot {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .dot div {
@@ -24,6 +25,7 @@
   from {
     transform: translateY(-100%);
   }
+
   to {
     transform: translateY(100%);
   }

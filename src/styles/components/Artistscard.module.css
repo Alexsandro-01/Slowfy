@@ -1,5 +1,4 @@
 .container {
-  /* max-width: 200px; */
   padding: 1em;
   background: rgb(24, 24, 24);
   background: linear-gradient(0deg, #111 0%, #222 100%);
@@ -20,6 +19,7 @@
   box-shadow: 10px 10px 15px #111;
   width: 140px;
   border-radius: 70px;
+  margin: auto;
   height: 140px;
   overflow: hidden;
   display: flex;
@@ -64,6 +64,7 @@
 
   .img-container {
     box-shadow: none;
+    margin: 0;
     width: 50px;
     border-radius: 25px;
     height: 50px;
