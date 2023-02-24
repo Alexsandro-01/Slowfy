@@ -14,13 +14,17 @@ import { validateTokenTime } from '@/utils/validToken';
 function Artists() {
   const [artists, setArtists] = useState<IArtists>();
   const [isLoading, setIsLoading] = useState(true);
+  const [period, setPeriod] = useState('short');
 
   const router = useRouter();
 
-  async function getArtists(dataUser: IData) {
+  async function getArtists(period: IPeriod) {
+    setIsLoading(true);
+    const DATAUSER = getItem('slowfy');
+
     const response = await fetchTopArtists(
-      dataUser.access,
-      IPeriod.Short,
+      DATAUSER.access,
+      period,
       ILimit.Fifity
     );
 
@@ -34,7 +38,7 @@ function Artists() {
     const isValid = await validateTokenTime(dataUser);
 
     if (isValid) {
-      getArtists(dataUser);
+      getArtists(IPeriod.Short);
     }
   }
 
@@ -46,25 +50,51 @@ function Artists() {
     } else {
       router.push('/');
     }
-  }, [artists]);
+  }, []);
 
   return (
     <main className={styles.main}>
-      {
-        isLoading ? <Loading /> : (
-          <>
-            <nav className={styles.nav}>
-              <h2>
-                Principais artistas
-              </h2>
-              <div>
-                <button>Últimas 4 semanas</button>
-                <button>Últimos 6 meses</button>
-                <button>Desde sempre</button>
-              </div>
-            </nav>
-
-            <section className={styles.container}>
+      <nav className={styles.nav}>
+        <h1>
+          Principais artistas
+        </h1>
+        <div>
+          <button
+            type='button'
+            className={period === 'short' ? styles['btn-hover'] : ''}
+            onClick={() => {
+              getArtists(IPeriod.Short);
+              setPeriod('short');
+            }}
+          >
+            Últimas 4 semanas
+          </button>
+          <button
+            type='button'
+            className={period === 'medium' ? styles['btn-hover'] : ''}
+            onClick={() => {
+              getArtists(IPeriod.Medium);
+              setPeriod('medium');
+            }}
+          >
+            Últimos 6 meses
+          </button>
+          <button
+            type='button'
+            className={period === 'long' ? styles['btn-hover'] : ''}
+            onClick={() => {
+              getArtists(IPeriod.Long);
+              setPeriod('long');
+            }}
+          >
+            Desde sempre
+          </button>
+        </div>
+      </nav>
+      <section className={styles.box}>
+        {
+          isLoading ? <Loading /> : (
+            <div className={styles.container}>
               {
                 artists && artists.items.length > 0 ? (
                   artists.items.map((artist) => (
@@ -77,13 +107,12 @@ function Artists() {
                   <p>Sem artistas</p>
                 )
               }
-            </section>
+            </div>
+          )
+        }
+      </section>
 
-            <NavBar />
-          </>
-        )
-      }
-
+      <NavBar />
     </main>
   );
 }
