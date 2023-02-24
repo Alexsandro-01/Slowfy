@@ -134,24 +134,26 @@ interface IMusicArtist {
   'uri': string
 }
 
-export interface IMusic {
-  'album': {
-    'album_type': string,
-    'artists': IMusicArtist[],
-    'available_markets': string[],
-    'external_urls': {
-      'spotify': string
-    },
-    'href': string,
-    'id': string,
-    'images': IImage[],
-    'name': string,
-    'release_date': string,
-    'release_date_precision': string,
-    'total_tracks': number,
-    'type': string,
-    'uri': string
+export interface IAlbum {
+  'album_type': string,
+  'artists': IMusicArtist[],
+  'available_markets': string[],
+  'external_urls': {
+    'spotify': string
   },
+  'href': string,
+  'id': string,
+  'images': IImage[],
+  'name': string,
+  'release_date': string,
+  'release_date_precision': string,
+  'total_tracks': number,
+  'type': string,
+  'uri': string
+}
+
+export interface IMusic {
+  'album': IAlbum,
   'artists': IMusicArtist[],
   'available_markets': string[],
   'disc_number': number,
@@ -196,4 +198,8 @@ export interface IRecentMusics {
   },
   'limit': number,
   'href': string
+}
+
+export interface ITopTracksArtist {
+  'tracks': IMusic[]
 }
