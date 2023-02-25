@@ -4,7 +4,7 @@
   align-items: center;
   display: grid;
   gap: 10px;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 4fr 2fr 1fr;
 }
 
 .container:hover {
@@ -50,6 +50,7 @@
   color: var(--color-soft);
 }
 
+
 .duration {
   text-align: end;
 }
@@ -57,11 +58,12 @@
 @media (max-width: 596px) {
   .container {
     padding: .5em 1em;
-    grid-template-columns: 3fr 1fr;
+    display: flex;
+    justify-content: space-between;
   }
 
   .music-info {
-    max-width: 90%;
+    max-width: 70%;
   }
 
   .music-number,
