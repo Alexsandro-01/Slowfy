@@ -51,15 +51,18 @@
 @media (max-width: 596px) {
   .container {
     width: 100%;
-    padding: .5em;
+    padding: .5em 1em;
     background: none;
     margin: 0;
     border-radius: 5px;
+    transition: .3s ease-in;
+  }
+
+  .container a {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    transition: .3s ease-in;
   }
 
   .container:hover {
