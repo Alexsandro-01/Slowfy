@@ -53,8 +53,8 @@ function Artist() {
   useEffect(() => {
     const DATAUSER = getItem('slowfy');
 
-    if (DATAUSER && router.query.id) {
-      verifyToken(DATAUSER);
+    if (DATAUSER) {
+      if (router.query.id) verifyToken(DATAUSER);
     } else {
       router.push('/');
     }
