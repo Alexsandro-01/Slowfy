@@ -119,6 +119,7 @@
 
   .cards-container {
     grid-auto-flow: unset;
+    grid-template-columns: 1fr;
     gap: 10px;
   }
 }

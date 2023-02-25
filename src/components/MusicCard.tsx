@@ -13,9 +13,8 @@ function MusicCard({ music, index }: { music: IMusic, index: number }) {
     const min = Math.floor(totalSeg / 60);
     const seg = Math.floor(totalSeg % 60);
 
-    return `${min}:${seg}`;
+    return `${min}:${seg < 9 ? seg + '0' : seg}`;
   }
-
   return (
     <div className={styles.container}>
       <div className={styles['music-info']}>
