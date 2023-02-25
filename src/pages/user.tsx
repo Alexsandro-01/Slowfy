@@ -144,10 +144,10 @@ function User() {
                   }
                 </h1>
                 <p>
+                  {`${playlists?.total} `}
                   <span>
-                    Playlists:
+                    Playlists
                   </span>
-                  {` ${playlists?.total}`}
                 </p>
               </div>
             </section>

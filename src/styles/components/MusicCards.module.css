@@ -2,9 +2,9 @@
   padding: .5em 1.5em;
   border-radius: 5px;
   align-items: center;
-  display: grid;
+  display: flex;
   gap: 10px;
-  grid-template-columns: 4fr 2fr 1fr;
+  justify-content: space-between;
 }
 
 .container:hover {
@@ -13,6 +13,7 @@
 
 .music-info {
   display: flex;
+  width: 40%;
 }
 
 .music-number {
@@ -28,7 +29,7 @@
 }
 
 .img {
-  width: 100%;
+  width: 50px;
   height: auto;
 }
 
@@ -39,11 +40,16 @@
   flex-direction: column;
 }
 
-.text p {
+.text p,
+.album-name p {
   padding: .25em 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.album-name {
+  width: 30%;
 }
 
 .container span {
@@ -53,6 +59,7 @@
 
 .duration {
   text-align: end;
+  width: 10%;
 }
 
 @media (max-width: 596px) {
