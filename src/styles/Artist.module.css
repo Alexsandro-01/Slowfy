@@ -1,11 +1,16 @@
-.main {}
+.main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 .header {
   background: linear-gradient(0deg, #222 0%, var(--principal-2) 100%);
   display: flex;
   align-items: center;
-  gap: 20px;
   padding: 2em;
+  gap: 20px;
 }
 
 .img-container {
@@ -18,8 +23,8 @@
 
 .img-container img {
   border-radius: 100px;
-  width: 100%;
-  height: auto;
+  width: 200px;
+  height: 200px;
 }
 
 .info {
@@ -40,6 +45,15 @@
   padding: .25em;
 }
 
+.container {
+  padding-bottom: 7em;
+  background: linear-gradient(0deg, #111 0%, #222 100%);
+}
+
+.container h3 {
+  padding: 1em;
+}
+
 @media (max-width: 596px) {
   .header {
     gap: 10px;
@@ -47,21 +61,22 @@
   }
 
   .img-container {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     overflow: hidden;
   }
 
   .img-container img {
-    width: 100%;
-    border-radius: 50px;
-    height: auto;
+    width: 80px;
+    border-radius: 40px;
+    height: 80px;
   }
 
   .info {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    max-width: 75%;
   }
 
   .info h2 {
@@ -73,6 +88,6 @@
   }
 
   .info p {
-    font-size: .8em;
+    font-size: .75em;
   }
 }
