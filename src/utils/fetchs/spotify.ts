@@ -7,7 +7,8 @@ import {
   IRecentMusics,
   IRefreshedToken,
   IPeriod,
-  IUserProfile
+  IUserProfile,
+  ITopTracksArtist
 } from '@/interfaces/types';
 
 
@@ -53,6 +54,20 @@ export async function fetchTopArtists(code: string, period: IPeriod, limit: numb
 
 export async function fetchArtist(code: string, artistId: string): Promise<IArtist> {
   const result = await fetch(`https://api.spotify.com/v1/artists/${artistId}`, {
+    headers: {
+      Authorization: `Bearer ${code}`,
+      'Content-Type': 'application/json'
+    }
+  });
+
+  return await result.json();
+}
+
+export async function fetchArtistTopMusics(
+  code: string,
+  artistId: string,
+): Promise<ITopTracksArtist> {
+  const result = await fetch(`https://api.spotify.com/v1/artists/${artistId}/top-tracks?market=BR`, {
     headers: {
       Authorization: `Bearer ${code}`,
       'Content-Type': 'application/json'
