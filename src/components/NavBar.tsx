@@ -30,7 +30,9 @@ function NavBar() {
           </a>
         </li>
         <li>
-          <a href="">
+          <a href="/musics" className={
+            path === '/musics' ? styles.hover : ''
+          }>
             <FiMusic className={styles.icon} />
             <span>Top Músicas</span>
           </a>
