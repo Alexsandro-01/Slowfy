@@ -38,7 +38,9 @@ function NavBar() {
           </a>
         </li>
         <li>
-          <a href="">
+          <a href="/recent" className={
+            path === '/recent' ? styles.hover : ''
+          }>
             <GiBackwardTime className={styles.icon} />
             <span>Recente</span>
           </a>
