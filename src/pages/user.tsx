@@ -130,7 +130,7 @@ function User() {
             <section className={styles.header}>
               <div className={styles.thumb}>
                 <Image
-                  src={profile?.images[0].url as string}
+                  src={profile?.images[1].url as string}
                   alt={`Imagem de perfil de ${profile?.display_name}`}
                   width="300"
                   height="300"
