@@ -35,7 +35,7 @@
 }
 
 .text {
-  max-width: 80%;
+  width: calc(100% - 110px); /*50px .music-number + 50px .img-cad + 10px padd-left*/
   padding-left: 10px;
   display: flex;
   flex-direction: column;
