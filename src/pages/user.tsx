@@ -56,7 +56,7 @@ function User() {
     const user = await fetchProfile(DATAUSER.access);
 
     if (user) {
-      const playlistsResponse = await fetchUserPlaylists(DATAUSER.access);
+      const playlistsResponse = await fetchUserPlaylists(DATAUSER.access, ILimit.Ten);
 
       const artistsResponse = await fetchTopArtists(
         DATAUSER.access,
