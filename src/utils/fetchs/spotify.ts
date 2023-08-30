@@ -21,9 +21,9 @@ export async function fetchProfile(code: string): Promise<IUserProfile> {
   return await result.json();
 }
 
-export async function fetchUserPlaylists(code: string): Promise<IPlaylists> {
+export async function fetchUserPlaylists(code: string, limit: ILimit): Promise<IPlaylists> {
 
-  const result = await fetch('https://api.spotify.com/v1/me/playlists', {
+  const result = await fetch(`https://api.spotify.com/v1/me/playlists?limit=${limit}`, {
     method: 'GET', headers: { Authorization: `Bearer ${code}` }
   });
 
