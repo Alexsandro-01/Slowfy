@@ -1,12 +1,13 @@
+import React, { useEffect, useState } from 'react';
+
 import Loading from '@/components/Loading';
 import PlaylistCard from '@/components/PlaylistCard';
-import { IData, ILimit, IPlaylist, IPlaylists } from '@/interfaces/types';
+import { IData, ILimit, IPlaylist } from '@/interfaces/types';
 import style from '@/styles/Artists.module.css';
 import { fetchUserPlaylists } from '@/utils/fetchs/spotify';
 import { getItem } from '@/utils/localStorage';
 import { validateTokenTime } from '@/utils/validToken';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
 
 function Playlists() {
   const [playlists, setPlaylists] = useState<IPlaylist[]>();
@@ -43,7 +44,7 @@ function Playlists() {
     const DATAUSER = getItem('slowfy');
 
     DATAUSER ? verifyToken(DATAUSER) : router.push('/');
-  }, [])
+  }, []);
 
   return (
     <main className={style.main}>
@@ -74,7 +75,7 @@ function Playlists() {
 
       </section>
     </main>
-  )
+  );
 }
 
 export default Playlists;

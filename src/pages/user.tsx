@@ -6,7 +6,6 @@ import {
   IArtists,
   IData,
   IMusics,
-  IPlaylists,
   IRecentMusics,
   IPeriod,
   IUserProfile,

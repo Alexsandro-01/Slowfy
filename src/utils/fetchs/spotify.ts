@@ -34,7 +34,7 @@ export async function fetchUserPlaylists(code: string, limit: ILimit): Promise<I
 
     const data: IPlaylists = await result.json();
 
-    response.push(...data.items)
+    response.push(...data.items);
     url = data.next;
   }
 
