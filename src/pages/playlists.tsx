@@ -1,5 +1,6 @@
+import Loading from '@/components/Loading';
 import PlaylistCard from '@/components/PlaylistCard';
-import { IData, ILimit, IPlaylists } from '@/interfaces/types';
+import { IData, ILimit, IPlaylist, IPlaylists } from '@/interfaces/types';
 import style from '@/styles/Artists.module.css';
 import { fetchUserPlaylists } from '@/utils/fetchs/spotify';
 import { getItem } from '@/utils/localStorage';
@@ -8,13 +9,13 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 function Playlists() {
-  const [playlists, setPlaylists] = useState<IPlaylists>();
+  const [playlists, setPlaylists] = useState<IPlaylist[]>();
   const [isLoading, setIsLoading] = useState(true);
 
   const router = useRouter();
 
-  function publicPlaylists(userPlaylists: IPlaylists) {
-    const result = userPlaylists.items.filter((playlist) => {
+  function publicPlaylists(userPlaylists: IPlaylist[]) {
+    const result = userPlaylists.filter((playlist) => {
       if (playlist.public) return playlist;
     });
 
@@ -31,8 +32,6 @@ function Playlists() {
       setIsLoading(false);
     }
   }
-
-
 
   async function verifyToken(dataUser: IData) {
     const isValid = await validateTokenTime(dataUser);
@@ -54,19 +53,24 @@ function Playlists() {
         </h1>
       </nav>
 
-      <section>
-        <div>
-          {
-            playlists && (
-              publicPlaylists(playlists).map((playlist) => (
-                <PlaylistCard
-                  key={playlist.id}
-                  playlist={playlist}
-                />
-              ))
-            )
-          }
-        </div>
+      <section className={style.box}>
+        {
+          isLoading ? <Loading /> : (
+            <div className={style.container}>
+              {
+                playlists && (
+                  publicPlaylists(playlists).map((playlist) => (
+                    <PlaylistCard
+                      key={playlist.id}
+                      playlist={playlist}
+                    />
+                  ))
+                )
+              }
+
+            </div>
+          )
+        }
 
       </section>
     </main>
