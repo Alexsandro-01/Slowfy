@@ -8,7 +8,8 @@ import {
   IRefreshedToken,
   IPeriod,
   IUserProfile,
-  ITopTracksArtist
+  ITopTracksArtist,
+  IPlaylist
 } from '@/interfaces/types';
 
 
@@ -21,13 +22,24 @@ export async function fetchProfile(code: string): Promise<IUserProfile> {
   return await result.json();
 }
 
-export async function fetchUserPlaylists(code: string, limit: ILimit): Promise<IPlaylists> {
+export async function fetchUserPlaylists(code: string, limit: ILimit): Promise<IPlaylist[]> {
 
-  const result = await fetch(`https://api.spotify.com/v1/me/playlists?limit=${limit}`, {
-    method: 'GET', headers: { Authorization: `Bearer ${code}` }
-  });
+  let url: string | null = `https://api.spotify.com/v1/me/playlists?limit=${limit}`;
+  const response: IPlaylist[] = [];
 
-  return await result.json();
+  while (url) {
+    const result = await fetch(url, {
+      method: 'GET', headers: { Authorization: `Bearer ${code}` }
+    });
+
+    const data: IPlaylists = await result.json();
+
+    response.push(...data.items)
+    url = data.next;
+  }
+
+
+  return response;
 }
 
 export async function fetchTopMusics(code: string, period: IPeriod, limit: ILimit): Promise<IMusics> {
