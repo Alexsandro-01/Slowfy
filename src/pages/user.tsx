@@ -10,7 +10,8 @@ import {
   IRecentMusics,
   IPeriod,
   IUserProfile,
-  ILimit
+  ILimit,
+  IPlaylist
 } from '@/interfaces/types';
 
 import styles from '@/styles/User.module.css';
@@ -31,8 +32,8 @@ import NavBar from '@/components/NavBar';
 import Loading from '@/components/Loading';
 import { validateTokenTime } from '@/utils/validToken';
 
-function publicPlaylsits(userPlaylists: IPlaylists) {
-  const result = userPlaylists.items.filter((playlist) => {
+function publicPlaylsits(userPlaylists: IPlaylist[]) {
+  const result = userPlaylists.filter((playlist) => {
     if (playlist.public) return playlist;
   });
 
@@ -41,7 +42,7 @@ function publicPlaylsits(userPlaylists: IPlaylists) {
 
 function User() {
   const [profile, setprofile] = useState<IUserProfile>();
-  const [playlists, setPlaylists] = useState<IPlaylists>();
+  const [playlists, setPlaylists] = useState<IPlaylist[]>();
   const [artists, setArtists] = useState<IArtists>();
   const [musics, setMusics] = useState<IMusics>();
   const [recentPlayed, setRecentPlayed] = useState<IRecentMusics>();
@@ -144,7 +145,7 @@ function User() {
                   }
                 </h1>
                 <p>
-                  {`${playlists?.total} `}
+                  {playlists && `${publicPlaylsits(playlists).length} `}
                   <span>
                     Playlists
                   </span>
