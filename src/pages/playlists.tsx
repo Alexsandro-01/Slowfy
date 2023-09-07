@@ -57,22 +57,27 @@ function Playlists() {
       <section className={style.box}>
         {
           isLoading ? <Loading /> : (
-            <div className={style.container}>
-              {
-                playlists && (
-                  publicPlaylists(playlists).map((playlist) => (
-                    <PlaylistCard
-                      key={playlist.id}
-                      playlist={playlist}
-                    />
-                  ))
-                )
-              }
-
-            </div>
+            playlists && playlists.length > 0 && (
+              <div className={style.container}>
+                {
+                  playlists && (
+                    publicPlaylists(playlists).map((playlist) => (
+                      <PlaylistCard
+                        key={playlist.id}
+                        playlist={playlist}
+                      />
+                    ))
+                  )
+                }
+              </div>
+            )
           )
         }
-
+        {
+          playlists && (
+            playlists.length === 0 && <p className={style.warning}>Ops! Parece que você não tem nenhuma playlsit...</p>
+          )
+        }
       </section>
     </main>
   );
