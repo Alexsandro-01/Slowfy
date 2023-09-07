@@ -9,6 +9,7 @@
 
 .nav {
   display: flex;
+  height: 10vh;
   align-items: flex-end;
   justify-content: space-between;
   padding: 2em;
@@ -54,6 +55,10 @@
   min-height: 100%;
   padding: 2em;
   padding-bottom: 7em;
+}
+
+.warning {
+  padding: 0em 2em;
 }
 
 @media (max-width: 596px) {
