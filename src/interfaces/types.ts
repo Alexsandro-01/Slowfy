@@ -203,3 +203,54 @@ export interface IRecentMusics {
 export interface ITopTracksArtist {
   'tracks': IMusic[]
 }
+
+export interface IPlaylistContentItems {
+  'added_at': string,
+  'added_by': {
+    'external_urls': {
+      'spotify': string
+    },
+    'followers': {
+      'href': string,
+      'total': 0
+    },
+    'href': string,
+    'id': string,
+    'type': string,
+    'uri': string
+  },
+  'is_local': false,
+  'track': {
+    'album': {
+      'album_type': string,
+      'total_tracks': number,
+      'available_markets': string[],
+      'external_urls': {
+        'spotify': string
+      },
+      'href': string,
+      'id': string,
+      'images': [
+        {
+          'url': string,
+          'height': 300,
+          'width': 300
+        }
+      ],
+      'name': string,
+    },
+    'disc_number': number,
+    'duration_ms': number,
+    'explicit': false,
+  }
+}
+
+export interface IPlaylistContent {
+  href: string,
+  limit: number,
+  next: string | null,
+  offset: 0,
+  previous: string
+  total: number,
+  items: IPlaylistContentItems[]
+}
