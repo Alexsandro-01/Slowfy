@@ -8,6 +8,7 @@ import { fetchUserPlaylists } from '@/utils/fetchs/spotify';
 import { getItem } from '@/utils/localStorage';
 import { validateTokenTime } from '@/utils/validToken';
 import { useRouter } from 'next/router';
+import NavBar from '@/components/NavBar';
 
 function Playlists() {
   const [playlists, setPlaylists] = useState<IPlaylist[]>();
@@ -79,6 +80,8 @@ function Playlists() {
           )
         }
       </section>
+
+      <NavBar />
     </main>
   );
 }
