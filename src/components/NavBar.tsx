@@ -46,7 +46,7 @@ function NavBar() {
           </a>
         </li>
         <li>
-          <a href="/playlists">
+          <a href="/playlists" className={path === '/playlists' ? styles.hover : ''}>
             <RiPlayListLine className={styles.icon} />
             <span>Playlists</span>
           </a>
