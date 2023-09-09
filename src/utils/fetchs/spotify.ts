@@ -9,7 +9,9 @@ import {
   IPeriod,
   IUserProfile,
   ITopTracksArtist,
-  IPlaylist
+  IPlaylist,
+  IPlaylistContent,
+  IPlaylistContentItems
 } from '@/interfaces/types';
 
 
@@ -38,6 +40,25 @@ export async function fetchUserPlaylists(code: string, limit: ILimit): Promise<I
     url = data.next;
   }
 
+
+  return response;
+}
+
+export async function fetchUserPlaylistContent(code: string, playlistId: string): Promise<IPlaylistContentItems[]> {
+
+  let url: string | null = `https://api.spotify.com/v1/playlists/${playlistId}/tracks?limit=50`;
+  const response: IPlaylistContentItems[] = [];
+
+  while (url) {
+    const result = await fetch(url, {
+      method: 'GET', headers: { Authorization: `Bearer ${code}` }
+    });
+
+    const data: IPlaylistContent = await result.json();
+
+    response.push(...data.items);
+    url = data.next;
+  }
 
   return response;
 }
