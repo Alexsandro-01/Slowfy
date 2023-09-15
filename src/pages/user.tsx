@@ -6,11 +6,11 @@ import {
   IArtists,
   IData,
   IMusics,
-  IPlaylists,
   IRecentMusics,
   IPeriod,
   IUserProfile,
-  ILimit
+  ILimit,
+  IPlaylist
 } from '@/interfaces/types';
 
 import styles from '@/styles/User.module.css';
@@ -31,8 +31,8 @@ import NavBar from '@/components/NavBar';
 import Loading from '@/components/Loading';
 import { validateTokenTime } from '@/utils/validToken';
 
-function publicPlaylsits(userPlaylists: IPlaylists) {
-  const result = userPlaylists.items.filter((playlist) => {
+function publicPlaylsits(userPlaylists: IPlaylist[]) {
+  const result = userPlaylists.filter((playlist) => {
     if (playlist.public) return playlist;
   });
 
@@ -41,7 +41,7 @@ function publicPlaylsits(userPlaylists: IPlaylists) {
 
 function User() {
   const [profile, setprofile] = useState<IUserProfile>();
-  const [playlists, setPlaylists] = useState<IPlaylists>();
+  const [playlists, setPlaylists] = useState<IPlaylist[]>();
   const [artists, setArtists] = useState<IArtists>();
   const [musics, setMusics] = useState<IMusics>();
   const [recentPlayed, setRecentPlayed] = useState<IRecentMusics>();
@@ -56,7 +56,7 @@ function User() {
     const user = await fetchProfile(DATAUSER.access);
 
     if (user) {
-      const playlistsResponse = await fetchUserPlaylists(DATAUSER.access);
+      const playlistsResponse = await fetchUserPlaylists(DATAUSER.access, ILimit.Fifity);
 
       const artistsResponse = await fetchTopArtists(
         DATAUSER.access,
@@ -132,8 +132,9 @@ function User() {
                 <Image
                   src={profile?.images[1].url as string}
                   alt={`Imagem de perfil de ${profile?.display_name}`}
-                  width="300"
-                  height="300"
+                  width="120"
+                  height="120"
+                  loading='lazy'
                 />
               </div>
 
@@ -143,11 +144,22 @@ function User() {
                     profile?.display_name
                   }
                 </h1>
+
                 <p>
-                  {`${playlists?.total} `}
+                  {
+                    playlists && `${playlists.length} `
+                  }
                   <span>
                     Playlists
                   </span>
+                  {' ⋅ '}
+                  {
+                    playlists && `${publicPlaylsits(playlists).length} `
+                  }
+                  <span>
+                    Públicas
+                  </span>
+
                 </p>
               </div>
             </section>

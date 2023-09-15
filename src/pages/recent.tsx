@@ -15,7 +15,6 @@ import MusicCard from '@/components/MusicCard';
 function Recent() {
   const [musics, setMusics] = useState<IRecentMusics>();
   const [isLoading, setIsLoading] = useState(true);
-  const [period, setPeriod] = useState('short');
 
   const router = useRouter();
 

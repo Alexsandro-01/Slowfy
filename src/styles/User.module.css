@@ -9,8 +9,7 @@
   display: flex;
   gap: 20px;
   padding: 2em;
-  background: rgb(24, 24, 24);
-  background: linear-gradient(0deg, #222 0%, var(--principal-2) 100%);
+  background: linear-gradient(0deg, #222 0%, var(--principal-2) 70%);
 }
 
 .thumb {
@@ -22,6 +21,7 @@
   width: 100%;
   height: auto;
   border-radius: 60px;
+  box-shadow: 1px 2px 7px #111;
 }
 
 .info {
@@ -32,10 +32,6 @@
 
 .info p {
   padding: 0.5em 0;
-}
-
-.info span {
-  color: rgb(179, 179, 179);
 }
 
 .info h1 {

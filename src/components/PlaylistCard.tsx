@@ -6,17 +6,18 @@ import { IPlaylist } from '@/interfaces/types';
 
 function PlaylistCard({ playlist }: { playlist: IPlaylist }) {
   return (
-    <div className={ styles.container }>
-      <div className={ styles['img-container'] }>
+    <div className={styles.container}>
+      <div className={styles['img-container']}>
         <Image
-          src={ playlist.images[0].url }
-          alt={ playlist.name }
-          width="300"
-          height="300"
-          className={ styles.img }
+          src={playlist.images[0].url}
+          alt={playlist.name}
+          width="140"
+          height="140"
+          loading='lazy'
+          className={styles.img}
         />
       </div>
-      <div className={ styles.info }>
+      <div className={styles.info}>
         <p>
           <strong>
             {
@@ -26,7 +27,7 @@ function PlaylistCard({ playlist }: { playlist: IPlaylist }) {
         </p>
         <p>
           <span>
-            { `${playlist.tracks.total} músicas`}
+            {`${playlist.tracks.total} músicas`}
           </span>
         </p>
       </div>
