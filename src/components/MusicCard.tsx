@@ -27,10 +27,11 @@ function MusicCard({ music, index }: { music: IMusic, index: number }) {
         </div>
         <div className={styles['img-card']}>
           <Image
-            src={music.album.images[0].url}
+            src={music.album.images[2].url}
             alt={music.album.name}
-            width='640'
-            height='640'
+            width='50'
+            height='50'
+            loading='lazy'
             className={styles.img}
           />
         </div>

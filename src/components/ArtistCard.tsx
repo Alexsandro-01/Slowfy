@@ -13,8 +13,9 @@ function ArtistCard({ artist }: { artist: IArtist }) {
           <Image
             src={artist.images[0].url}
             alt={artist.name}
-            width='300'
-            height='300'
+            width='140'
+            height='140'
+            loading='lazy'
             className={styles.img}
           />
         </div>
