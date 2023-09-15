@@ -144,13 +144,22 @@ function User() {
                     profile?.display_name
                   }
                 </h1>
+
                 <p>
                   {
-                    playlists && `${publicPlaylsits(playlists).length} ⋅ `
+                    playlists && `${playlists.length} `
                   }
                   <span>
                     Playlists
                   </span>
+                  {' ⋅ '}
+                  {
+                    playlists && `${publicPlaylsits(playlists).length} `
+                  }
+                  <span>
+                    Públicas
+                  </span>
+
                 </p>
               </div>
             </section>
