@@ -13,16 +13,9 @@ import NavBar from '@/components/NavBar';
 function Playlists() {
   const [playlists, setPlaylists] = useState<IPlaylist[]>();
   const [isLoading, setIsLoading] = useState(true);
+  const [showAllplaylists, setShowAllPlaylists] = useState(true);
 
   const router = useRouter();
-
-  function publicPlaylists(userPlaylists: IPlaylist[]) {
-    const result = userPlaylists.filter((playlist) => {
-      if (playlist.public) return playlist;
-    });
-
-    return result;
-  }
 
   async function getPlaylists() {
     const DATAUSER = getItem('slowfy');
@@ -53,6 +46,22 @@ function Playlists() {
         <h1>
           Playlists
         </h1>
+        <div>
+          <button
+            type='button'
+            className={!showAllplaylists ? style['btn-hover'] : ''}
+            onClick={() => setShowAllPlaylists(false)}
+          >
+            Publicas
+          </button>
+          <button
+            type='button'
+            className={showAllplaylists ? style['btn-hover'] : ''}
+            onClick={() => setShowAllPlaylists(true)}
+          >
+            Todas
+          </button>
+        </div>
       </nav>
 
       <section className={style.box}>
@@ -62,12 +71,18 @@ function Playlists() {
               <div className={style.container}>
                 {
                   playlists && (
-                    publicPlaylists(playlists).map((playlist) => (
-                      <PlaylistCard
-                        key={playlist.id}
-                        playlist={playlist}
-                      />
-                    ))
+                    playlists
+                      .filter((playlist) => {
+                        if (showAllplaylists) return playlist;
+
+                        return playlist.public !== showAllplaylists;
+                      })
+                      .map((playlist) => (
+                        <PlaylistCard
+                          key={playlist.id}
+                          playlist={playlist}
+                        />
+                      ))
                   )
                 }
               </div>
