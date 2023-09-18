@@ -10,6 +10,15 @@
   transition: .3s ease-in;
 }
 
+.container a {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--color-mute);
+}
+
 .container:hover {
   background: #222;
   box-shadow: 0px 20px 35px #111;
@@ -53,6 +62,13 @@
     justify-content: flex-start;
     align-items: center;
     transition: .3s ease-in;
+  }
+
+  .container a {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
   }
 
   .container:hover {
