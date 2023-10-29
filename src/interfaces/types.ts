@@ -80,6 +80,7 @@ export interface IPlaylist {
   'tracks': {
     'href': string,
     'total': number | null
+    'items': IMusic[]
   },
   'type': string,
   'uri': string
@@ -220,29 +221,7 @@ export interface IPlaylistContentItems {
     'uri': string
   },
   'is_local': false,
-  'track': {
-    'album': {
-      'album_type': string,
-      'total_tracks': number,
-      'available_markets': string[],
-      'external_urls': {
-        'spotify': string
-      },
-      'href': string,
-      'id': string,
-      'images': [
-        {
-          'url': string,
-          'height': 300,
-          'width': 300
-        }
-      ],
-      'name': string,
-    },
-    'disc_number': number,
-    'duration_ms': number,
-    'explicit': false,
-  }
+  'track': IMusic
 }
 
 export interface IPlaylistContent {

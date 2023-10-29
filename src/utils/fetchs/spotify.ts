@@ -8,11 +8,10 @@ import {
   IRefreshedToken,
   IPeriod,
   IUserProfile,
-  ITopTracksArtist,
-  IPlaylist,
-  IPlaylistContent,
-  IPlaylistContentItems
+  ITopTracksArtist
 } from '@/interfaces/types';
+import { IPlaylist } from '@/interfaces/IPlaylist';
+import { IUserPlaylists, IUserPlaylistsItems } from '@/interfaces/IUserPlaylists';
 
 
 export async function fetchProfile(code: string): Promise<IUserProfile> {
@@ -24,17 +23,17 @@ export async function fetchProfile(code: string): Promise<IUserProfile> {
   return await result.json();
 }
 
-export async function fetchUserPlaylists(code: string, limit: ILimit): Promise<IPlaylist[]> {
+export async function fetchUserPlaylists(code: string, limit: ILimit): Promise<IUserPlaylistsItems[]> {
 
   let url: string | null = `https://api.spotify.com/v1/me/playlists?limit=${limit}`;
-  const response: IPlaylist[] = [];
+  const response: IUserPlaylistsItems[] = [];
 
   while (url) {
     const result = await fetch(url, {
       method: 'GET', headers: { Authorization: `Bearer ${code}` }
     });
 
-    const data: IPlaylists = await result.json();
+    const data: IUserPlaylists = await result.json();
 
     response.push(...data.items);
     url = data.next;
@@ -44,21 +43,25 @@ export async function fetchUserPlaylists(code: string, limit: ILimit): Promise<I
   return response;
 }
 
-export async function fetchUserPlaylistContent(code: string, playlistId: string): Promise<IPlaylistContentItems[]> {
+export async function fetchUserPlaylistContent(code: string, playlistId: string): Promise<IPlaylist> {
 
-  let url: string | null = `https://api.spotify.com/v1/playlists/${playlistId}/tracks?limit=50`;
-  const response: IPlaylistContentItems[] = [];
+  const url: string | null = `https://api.spotify.com/v1/playlists/${playlistId}?limit=50`;
 
-  while (url) {
-    const result = await fetch(url, {
-      method: 'GET', headers: { Authorization: `Bearer ${code}` }
-    });
+  // while (url) {
 
-    const data: IPlaylistContent = await result.json();
 
-    response.push(...data.items);
-    url = data.next;
-  }
+
+
+  //   url = data.next;
+  // }
+
+  const result = await fetch(url, {
+    method: 'GET', headers: { Authorization: `Bearer ${code}` }
+  });
+
+  const data: IPlaylist = await result.json();
+
+  const response: IPlaylist = data;
 
   return response;
 }

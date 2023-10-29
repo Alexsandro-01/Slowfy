@@ -4,14 +4,25 @@ import Image from 'next/image';
 
 import styles from '@/styles/components/Artistscard.module.css';
 import Link from 'next/link';
+import image from '../../public/image-regular.svg';
+
 
 function ArtistCard({ artist }: { artist: IArtist }) {
+
+  function getImage() {
+    if (artist.images.length > 0) {
+      return artist.images[0].url;
+    }
+
+    return image;
+  }
+
   return (
     <div className={styles.container}>
       <Link href={`/artist/${artist.id}`}>
         <div className={styles['img-container']} >
           <Image
-            src={artist.images[0].url}
+            src={getImage()}
             alt={artist.name}
             width='140'
             height='140'

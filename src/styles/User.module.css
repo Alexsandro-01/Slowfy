@@ -13,14 +13,14 @@
 }
 
 .thumb {
-  width: 120px;
-  height: 120px;
+  width: 150px;
+  height: 150px;
 }
 
 .thumb img {
   width: 100%;
   height: auto;
-  border-radius: 60px;
+  border-radius: 50%;
   box-shadow: 1px 2px 7px #111;
 }
 

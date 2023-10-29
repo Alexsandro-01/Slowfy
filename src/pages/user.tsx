@@ -132,8 +132,8 @@ function User() {
                 <Image
                   src={profile?.images[1].url as string}
                   alt={`Imagem de perfil de ${profile?.display_name}`}
-                  width="120"
-                  height="120"
+                  width="150"
+                  height="150"
                   loading='lazy'
                 />
               </div>

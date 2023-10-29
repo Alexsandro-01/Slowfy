@@ -13,7 +13,6 @@
 .container a {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   gap: 10px;
   text-decoration: none;
   color: var(--color-mute);
@@ -29,6 +28,7 @@
   width: 140px;
   height: 140px;
   border-radius: 5px;
+  align-self: center;
   overflow: hidden;
   display: flex;
   align-items: center;

@@ -97,7 +97,8 @@ function Artist() {
                   </p>
                 </div>
               </div>
-            </header><section className={styles.container}>
+            </header>
+            <section className={styles.container}>
               <h3>
                 Músicas populare de
                 {' '}
